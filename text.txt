@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -23,22 +24,22 @@
 		}
 		div_info.onmousemove=function(e){
 			
-			var x=e.clientX;   //é¼ æ ‡ç›¸å¯¹äºè§†å£çš„ä½ç½®
+			var x=e.clientX;   //Êó±êÏà¶ÔÓÚÊÓ¿ÚµÄÎ»ÖÃ
 			var y=e.clientY;
 			var t=div_info.offsetTop;
 			var l=div_info.offsetLeft;
 			var _left = x - l - move.offsetWidth/2; 
     		var _top = y - t -move.offsetHeight/2;
-    		if(_top<=0)//æ»‘åˆ°boxçš„æœ€é¡¶éƒ¨
+    		if(_top<=0)//»¬µ½boxµÄ×î¶¥²¿
       			_top = 0;
-    		else if(_top>=div_info.offsetHeight-move.offsetHeight)//æ»‘åˆ°boxçš„æœ€åº•éƒ¨
+    		else if(_top>=div_info.offsetHeight-move.offsetHeight)//»¬µ½boxµÄ×îµ×²¿
       			_top = div_info.offsetHeight-move.offsetHeight ;
-    		if(_left<=0)//æ»‘åˆ°boxçš„æœ€å·¦è¾¹
+    		if(_left<=0)//»¬µ½boxµÄ×î×ó±ß
       			_left=0;
-    		else if(_left>=div_info.offsetWidth-move.offsetWidth)//æ»‘åˆ°boxçš„æœ€å³è¾¹
+    		else if(_left>=div_info.offsetWidth-move.offsetWidth)//»¬µ½boxµÄ×îÓÒ±ß
       			_left=div_info.offsetWidth-move.offsetWidth ;
       			console.log(_top);
-    			move.style.top = _top +"px";//è®¾ç½®moveçš„ä½ç½®
+    			move.style.top = _top +"px";//ÉèÖÃmoveµÄÎ»ÖÃ
     			move.style.left = _left + "px";
 			var w = _left/(div_info.offsetWidth-move.offsetWidth);
     		var h = _top/(div_info.offsetHeight-move.offsetHeight);
@@ -54,9 +55,9 @@
 				li_img2[i].style.zIndex="4";
 				li_img3[i].style.zIndex="9";
 			}
-			var li_img3_top = (li_img3[i].offsetHeight-div_fd.offsetHeight)*h;//è®¡ç®—å¤§å›¾çš„ä½ç½®
+			var li_img3_top = (li_img3[i].offsetHeight-div_fd.offsetHeight)*h;//¼ÆËã´óÍ¼µÄÎ»ÖÃ
     		var li_img3_left = (li_img3[i].offsetWidth-div_fd.offsetWidth)*w;
-    		li_img3[i].style.top = -li_img3_top + "px";//è®¾ç½®å¤§å›¾çš„ä½ç½®ä¿¡æ¯
+    		li_img3[i].style.top = -li_img3_top + "px";//ÉèÖÃ´óÍ¼µÄÎ»ÖÃĞÅÏ¢
     		li_img3[i].style.left = -li_img3_left + "px";
 		}	
     }
