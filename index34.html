@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title></title>
+	<script>
+		window.onload=function(){
+		var li_img=document.getElementsByClassName("li_img");
+		var li_img2=document.getElementsByClassName("li_img2");
+		var div_fd=document.getElementsByClassName("div_fd")[0];
+		var div_info=document.getElementsByClassName("div_info")[0];
+		var li_img3=document.getElementsByClassName("li_img3");
+		var ul_list2=document.getElementsByClassName("ul_list2")[0];
+		var ul_list3=document.getElementsByClassName("ul_list3")[0];
+		var move=document.getElementsByClassName("move")[0];
+		div_info.onmouseover=function(){
+				div_fd.style.display="block";
+				move.style.display="block";
+		}
+		div_info.onmouseout=function(){
+				div_fd.style.display="none";
+				move.style.display="none";
+		}
+		div_info.onmousemove=function(e){
+			
+			var x=e.clientX;   //鼠标相对于视口的位置
+			var y=e.clientY;
+			var t=div_info.offsetTop;
+			var l=div_info.offsetLeft;
+			var _left = x - l - move.offsetWidth/2; 
+    		var _top = y - t -move.offsetHeight/2;
+    		if(_top<=0)//滑到box的最顶部
+      			_top = 0;
+    		else if(_top>=div_info.offsetHeight-move.offsetHeight)//滑到box的最底部
+      			_top = div_info.offsetHeight-move.offsetHeight ;
+    		if(_left<=0)//滑到box的最左边
+      			_left=0;
+    		else if(_left>=div_info.offsetWidth-move.offsetWidth)//滑到box的最右边
+      			_left=div_info.offsetWidth-move.offsetWidth ;
+      			console.log(_top);
+    			move.style.top = _top +"px";//设置move的位置
+    			move.style.left = _left + "px";
+			var w = _left/(div_info.offsetWidth-move.offsetWidth);
+    		var h = _top/(div_info.offsetHeight-move.offsetHeight);
+    		for (var i=0;i<li_img.length;i++) {
+			li_img[i].index=i;
+			li_img[i].onclick=function(){
+				i=this.index;
+				for(var j=0;j<li_img.length;j++){
+					
+					li_img2[j].style.zIndex="1";
+					li_img3[j].style.zIndex="0";
+				}
+				li_img2[i].style.zIndex="4";
+				li_img3[i].style.zIndex="9";
+			}
+			var li_img3_top = (li_img3[i].offsetHeight-div_fd.offsetHeight)*h;//计算大图的位置
+    		var li_img3_left = (li_img3[i].offsetWidth-div_fd.offsetWidth)*w;
+    		li_img3[i].style.top = -li_img3_top + "px";//设置大图的位置信息
+    		li_img3[i].style.left = -li_img3_left + "px";
+		}	
+    }
+}
+	</script>
+	</head>
+	
+	<style>
+	.ul_list{
+		padding: 0;
+		margin: 0;
+		width: 175px;
+		height: 60px;
+		margin-left:300px;
+		float: left;
+	}
+	.li_list{
+		width: 50px;
+		height: 60px;
+		float:left;
+		margin-left: 5px;
+		list-style: none;
+		border: 1px solid silver;
+	}
+	.li_list img,.li_list2 img{
+		width: 100%;
+		height: 100%;
+	}
+	.div_info{
+		position: relative;
+		width: 222px;
+		height: 282px;
+		border: 1px solid silver;
+	}
+	.ul_list2{
+		position: absolute;
+		width:222px;
+		height: 282px;
+		margin: 0;
+		padding: 0;
+	}
+	.li_list2,.li_list3{
+		list-style: none;
+	}
+	.li_img2{
+		position: absolute;
+	}
+    .move{
+    	width: 60px;
+    	height: 80px;
+    	left: 0;
+    	top: 0px;
+    	position: absolute;
+    	z-index: 9999;
+    	display: none;
+    	background-color: silver;
+		opacity: 0.5;
+    }
+    .div_fd{
+		width: 222px;
+		height: 282px;
+		float: left;
+		left: 300px;
+		overflow: hidden;
+		border: 1px solid silver;
+		position: absolute;
+		margin-top: -283.6px;
+		display: none;
+	}
+	.ul_list3{
+		width: 222px;
+		height: 282px;
+		margin: 0 ;
+		padding: 0;
+		border: 1px solid red;
+    }
+    .li_img3{
+  		width:768px;
+  		height:1024px;
+  		position:absolute;
+  		top:0px;
+  		left:0px;
+}
+	</style>
+	<body>
+	<div class="div_list">
+	<ul class="ul_list">
+		<li class="li_list"><img src="img/bigimage00.jpg" class="li_img"/></li>
+		<li class="li_list"><img src="img/bigimage01.jpg" class="li_img"/></li>
+		<li class="li_list"><img src="img/bigimage02.jpg" class="li_img"/></li>
+	</ul>
+	</div>
+	
+	<div class="div_info">
+		<ul class="ul_list2">
+		<li class="li_list2"><img src="img/bigimage00.jpg" class="li_img2" style="z-index: 3;"/></li>
+		<li class="li_list2"><img src="img/bigimage01.jpg" class="li_img2" style="z-index: 2;"/></li>
+		<li class="li_list2"><img src="img/bigimage02.jpg" class="li_img2" style="z-index: 1;"/></li>
+		</ul>
+		<div class="move"></div>
+	</div>
+	<div class="div_fd">
+		<ul class="ul_list3">
+		<li class="li_list3"><img src="img/bigimage00.jpg" class="li_img3" style="z-index: 8;"/></li>
+		<li class="li_list3"><img src="img/bigimage01.jpg" class="li_img3" style="z-index: 7;"/></li>
+		<li class="li_list3"><img src="img/bigimage02.jpg" class="li_img3" style="z-index: 6;"/></li>
+		</ul>
+	</div>
+	</body>
+</html>
